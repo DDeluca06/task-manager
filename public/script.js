@@ -11,6 +11,8 @@ const fetchTasks = async () => {
         taskItem.className = 'list-group-item d-flex justify-content-between align-items-center';
         taskItem.dataset.startDate = task.startDate; // Store start date
         taskItem.dataset.dueDate = task.dueDate; // Store due date
+        // THIS SUCKS, BUT I DON'T WANT TO TOUCH EJS AGAIN
+        // I'LL DO IT LATER (read: never)
         taskItem.innerHTML = `
             <div>
                 <strong>${task.title}</strong><br>
@@ -40,6 +42,7 @@ document.getElementById('taskList').addEventListener('change', async function(ev
         const newStatus = event.target.value;
 
         // Get the task item to retrieve other necessary fields
+        // Why am I writing this.
         const taskItem = event.target.closest('li');
         const title = taskItem.querySelector('strong').innerText;
         const description = taskItem.querySelector('small').innerText;
@@ -56,6 +59,7 @@ document.getElementById('taskList').addEventListener('change', async function(ev
         const formattedStartDate = formatDate(startDate);
         const formattedDueDate = formatDate(dueDate);
 
+        // Console bloat, probably!
         console.log(`Changing status for task ID ${taskId} to ${newStatus}`);
 
         try {
@@ -76,7 +80,8 @@ document.getElementById('taskList').addEventListener('change', async function(ev
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
+            
+            // Do we need to tell them this through the console? Do people actually open their console who aren't developers?
             const updatedTask = await response.json();
             console.log('Task updated:', updatedTask); // Log the updated task
 
@@ -89,6 +94,8 @@ document.getElementById('taskList').addEventListener('change', async function(ev
 });
 
 // Fetch tasks on page load
+// Are there better ways to do this? Absolutely!
+// Am I a better person? Clearly not.
 window.onload = fetchTasks;
 
 // Add task
@@ -113,6 +120,7 @@ document.getElementById('taskForm').addEventListener('submit', async function(ev
 });
 
 // Event delegation for edit and delete buttons
+// HOLY MOTHER OF USELESS CODE!
 document.getElementById('taskList').addEventListener('click', async function(event) {
     const taskId = event.target.dataset.id;
     if (event.target.classList.contains('delete-btn')) {
@@ -144,8 +152,6 @@ document.getElementById('taskList').addEventListener('click', async function(eve
         $('#editTaskModal').modal('show');
 
         // Handle the edit form submission
-        // AND THE MOST BLOATED PoS CODE AWARD
-        // RIGHTFULLY BELONGS TO...
         document.getElementById('editTaskForm').onsubmit = async function(event) {
             event.preventDefault();
             const updatedTitle = document.getElementById('editTaskTitle').value;

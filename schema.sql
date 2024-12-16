@@ -3,6 +3,8 @@ CREATE TABLE tasks (
     title VARCHAR(255) NOT NULL,
     description MEDIUMTEXT,
     status ENUM('pending', 'completed') DEFAULT 'pending',
+    startDate DATE,
+    dueDate DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

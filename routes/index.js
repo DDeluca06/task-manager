@@ -17,6 +17,7 @@ router.post('/', async (req, res) => {
 });
 
 // Get all tasks, hopefully...
+// 4:45 PM, 12/16: Hi, this is revision 8. I kept track. It did not get the tasks initially. I don't know why it didn't, but it does now, so we're not going to talk about it.
 router.get('/', async (req, res) => {
     try {
         const tasks = await Task.findAll();
@@ -43,7 +44,7 @@ router.put('/:id', async (req, res) => {
             task.description = description;
             task.startDate = startDate;
             task.dueDate = dueDate;
-            task.status = status; // Ensure status is updated
+            task.status = status; // Ensure status is updated. Thanks, Sequelize.
             await task.save();
             res.json(task);
         } else {
@@ -65,6 +66,7 @@ router.delete('/:id', async (req, res) => {
         } else {
             res.status(404).json({ error: 'Task not found' });
         }
+        // If this ever triggers or fails, I should not be allowed to write another piece of code.
     } catch (error) {
         res.status(500).json({ error: 'Failed to delete task' });
     }

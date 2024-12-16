@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager - Manage Tasks</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+    <script src="crud.js" defer></script>
+    <script src="validation.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Task Manager</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="manager.html">Manage Tasks</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Manage Your Tasks</h2>
+        <form id="task-form">
+            <label for="task-name">Task Name:</label>
+            <input type="text" id="task-name" name="task-name" required>
+            <label for="task-description">Description:</label>
+            <textarea id="task-description" name="task-description" required></textarea>
+            <button type="submit">Add Task</button>
+        </form>
+        <h3>Your Tasks</h3>
+        <ul id="task-list"></ul>
+    </main>
+    <footer>
+        <p>&copy; 2023 Task Manager</p>
+    </footer>
+    <script src="appt.js"></script>
+    <script src="validationtest.js"></script>
+    <script src="crudt.js"></script>
+</body>
+</html>
